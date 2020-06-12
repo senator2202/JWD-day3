@@ -1,4 +1,4 @@
-package by.kharitonov.validator;
+package by.epam.kharitonov.validator;
 
 import org.testng.annotations.Test;
 
