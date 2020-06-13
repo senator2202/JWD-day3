@@ -1,39 +1,36 @@
 package by.kharitonov.entity;
 
-import java.awt.*;
-
 public class Ball {
-    private double diameter;
-    private Color color;
-    private double weight;
+    private BallSize ballSize;
+    private CustomColor color;
 
-    public Ball(double diameter, Color color, double weight) {
-        this.diameter = diameter;
+    public Ball(BallSize ballSize, CustomColor color) {
+        this.ballSize = ballSize;
         this.color = color;
-        this.weight = weight;
     }
 
-    public double getDiameter() {
-        return diameter;
+    public BallSize getBallSize() {
+        return ballSize;
     }
 
-    public Color getColor() {
+    public void setBallSize(BallSize ballSize) {
+        this.ballSize = ballSize;
+    }
+
+    public CustomColor getColor() {
         return color;
     }
 
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setDiameter(double diameter) {
-        this.diameter = diameter;
-    }
-
-    public void setColor(Color color) {
+    public void setColor(CustomColor color) {
         this.color = color;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Ball{");
+        sb.append("ballSize=").append(ballSize);
+        sb.append(", color=").append(color);
+        sb.append('}');
+        return sb.toString();
     }
 }
