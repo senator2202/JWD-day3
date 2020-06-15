@@ -1,7 +1,7 @@
 package by.kharitonov.day3.validator;
 
-import by.kharitonov.entity.Ball;
-import by.kharitonov.entity.Basket;
+import by.kharitonov.day3.entity.Ball;
+import by.kharitonov.day3.entity.Basket;
 
 public class BasketBallValidator {
     public boolean possibleToPut(Ball ball, Basket basket) {

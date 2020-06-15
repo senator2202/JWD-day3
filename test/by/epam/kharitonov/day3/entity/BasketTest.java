@@ -1,10 +1,10 @@
 package by.epam.kharitonov.day3.entity;
 
-import by.kharitonov.entity.Ball;
-import by.kharitonov.entity.BallSize;
-import by.kharitonov.entity.Basket;
-import by.kharitonov.entity.CustomColor;
-import by.kharitonov.exception.BasketBallException;
+import by.kharitonov.day3.entity.Ball;
+import by.kharitonov.day3.entity.BallSize;
+import by.kharitonov.day3.entity.Basket;
+import by.kharitonov.day3.entity.CustomColor;
+import by.kharitonov.day3.exception.BasketBallException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;

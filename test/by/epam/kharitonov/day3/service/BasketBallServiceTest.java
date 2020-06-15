@@ -1,12 +1,13 @@
 package by.epam.kharitonov.day3.service;
 
-import by.epam.kharitonov.validator.BasketBallValidatorTest;
-import by.kharitonov.entity.Ball;
-import by.kharitonov.entity.BallSize;
-import by.kharitonov.entity.Basket;
-import by.kharitonov.entity.CustomColor;
-import by.kharitonov.exception.BasketBallException;
-import by.kharitonov.service.BasketBallService;
+import by.epam.kharitonov.day3.validator.BasketBallValidatorTest;
+import by.kharitonov.day3.service.BasketBallService;
+import by.kharitonov.day3.entity.Ball;
+import by.kharitonov.day3.entity.BallSize;
+import by.kharitonov.day3.entity.Basket;
+import by.kharitonov.day3.entity.CustomColor;
+import by.kharitonov.day3.exception.BasketBallException;
+import by.kharitonov.day3.service.BasketBallService;
 import org.testng.annotations.*;
 
 import static org.testng.Assert.assertEquals;
