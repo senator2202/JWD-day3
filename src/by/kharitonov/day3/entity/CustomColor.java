@@ -1,4 +1,4 @@
-package by.kharitonov.entity;
+package by.kharitonov.day3.entity;
 
 public enum CustomColor {
     RED(0), GREEN(1), BLUE(2), YELLOW(3), PINK(4), PURPLE(5),

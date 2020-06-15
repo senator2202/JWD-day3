@@ -1,4 +1,4 @@
-package by.kharitonov.entity;
+package by.kharitonov.day3.entity;
 
 public enum BallSize {
     SIZE_THREE(18.0, 0.32),

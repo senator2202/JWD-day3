@@ -1,4 +1,4 @@
-package by.kharitonov.entity;
+package by.kharitonov.day3.entity;
 
 public class Ball {
     private BallSize ballSize;

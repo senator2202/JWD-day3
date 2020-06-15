@@ -1,4 +1,4 @@
-package by.epam.kharitonov.entity;
+package by.epam.kharitonov.day3.entity;
 
 import by.kharitonov.entity.Ball;
 import by.kharitonov.entity.BallSize;

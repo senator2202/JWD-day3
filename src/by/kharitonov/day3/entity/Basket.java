@@ -1,5 +1,7 @@
-package by.kharitonov.entity;
+package by.kharitonov.day3.entity;
 
+import by.kharitonov.day3.exception.BasketBallException;
+import by.kharitonov.day3.validator.BasketBallValidator;
 import by.kharitonov.exception.BasketBallException;
 import by.kharitonov.validator.BasketBallValidator;
 

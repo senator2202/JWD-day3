@@ -1,4 +1,4 @@
-package by.epam.kharitonov.service;
+package by.epam.kharitonov.day3.service;
 
 import by.epam.kharitonov.validator.BasketBallValidatorTest;
 import by.kharitonov.entity.Ball;

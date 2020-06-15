@@ -1,4 +1,4 @@
-package by.kharitonov.validator;
+package by.kharitonov.day3.validator;
 
 import by.kharitonov.entity.Ball;
 import by.kharitonov.entity.Basket;
