@@ -4,7 +4,6 @@ import by.kharitonov.day3.entity.Ball;
 import by.kharitonov.day3.entity.BallSize;
 import by.kharitonov.day3.entity.Basket;
 import by.kharitonov.day3.entity.CustomColor;
-import by.kharitonov.day3.exception.BasketBallException;
 import by.kharitonov.day3.validator.BasketBallValidator;
 import org.testng.annotations.*;
 
@@ -22,13 +21,12 @@ public class BasketBallValidatorTest {
     @DataProvider(name = "dataForPossibleToPut")
     @Test
     public Object[][] dataForPossibleToPut() {
-        try {
-            Basket emptyBasket = Basket.createBasket(33, 2);
-            Basket smallBasket = Basket.createBasket(15, 10);
-            Basket smallEmptyBasket = Basket.createBasket(12, 5);
-            Basket fullBasket = Basket.createBasket(30, 1);
+            Basket emptyBasket = new Basket(33, 2);
+            Basket smallBasket = new Basket(15, 10);
+            Basket smallEmptyBasket = new Basket(12, 5);
+            Basket fullBasket = new Basket(30, 1);
             Ball ball = new Ball(BallSize.SIZE_FIVE, CustomColor.RED);
-            fullBasket.getBalls().add(ball);
+            fullBasket.add(ball);
             return new Object[][]{
                     {new Ball(BallSize.SIZE_FIVE, CustomColor.BLUE),
                             fullBasket, false},
@@ -39,9 +37,6 @@ public class BasketBallValidatorTest {
                     {new Ball(BallSize.SIZE_THREE, CustomColor.RED),
                             smallEmptyBasket, false}
             };
-        } catch (BasketBallException e) {
-            return new Object[][]{};
-        }
     }
 
     @Parameters({"ball", "basket", "expectedResult"})

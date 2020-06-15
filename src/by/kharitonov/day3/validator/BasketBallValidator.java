@@ -5,7 +5,7 @@ import by.kharitonov.day3.entity.Basket;
 
 public class BasketBallValidator {
     public boolean possibleToPut(Ball ball, Basket basket) {
-        int totalCapacity = basket.getBalls().size() + 1;
+        int totalCapacity = basket.totalBalls() + 1;
         return (totalCapacity <= basket.getCapacity() &&
                 ball.getBallSize().getDiameter() <= basket.getDiameter());
     }

@@ -1,7 +1,5 @@
 package by.kharitonov.day3.service;
 
-import by.kharitonov.day3.entity.CustomColor;
-import by.kharitonov.day3.validator.BasketBallValidator;
 import by.kharitonov.day3.entity.Ball;
 import by.kharitonov.day3.entity.Basket;
 import by.kharitonov.day3.entity.CustomColor;
@@ -13,22 +11,22 @@ public class BasketBallService {
         if (!validator.possibleToPut(ball, basket)) {
             return false;
         }
-        basket.getBalls().add(ball);
+        basket.add(ball);
         return true;
     }
 
     public double totalBallsWeight(Basket basket) {
         double sum = 0;
-        for (Ball b : basket.getBalls()) {
-            sum += b.getBallSize().getWeight();
+        for (int i = 0; i < basket.totalBalls(); i++) {
+            sum += basket.getBall(i).getBallSize().getWeight();
         }
         return sum;
     }
 
     public int totalColorBalls(CustomColor color, Basket basket) {
         int count = 0;
-        for (Ball b : basket.getBalls()) {
-            if (b.getColor() == color) {
+        for (int i = 0; i < basket.totalBalls(); i++) {
+            if (basket.getBall(i).getColor() == color) {
                 count++;
             }
         }

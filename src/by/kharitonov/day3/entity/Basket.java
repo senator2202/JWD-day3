@@ -1,30 +1,24 @@
 package by.kharitonov.day3.entity;
 
-import by.kharitonov.day3.exception.BasketBallException;
-import by.kharitonov.day3.validator.BasketBallValidator;
-import by.kharitonov.day3.exception.BasketBallException;
-import by.kharitonov.day3.validator.BasketBallValidator;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Basket {
     private double diameter;
     private int capacity;
     private ArrayList<Ball> balls;
 
-    private Basket(double diameter, int capacity) {
+    public Basket(double diameter, int capacity) {
         this.capacity = capacity;
         this.diameter = diameter;
         balls = new ArrayList<>();
     }
 
-    public List<Ball> getBalls() {
-        return balls;
-    }
-
     public double getCapacity() {
         return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public double getDiameter() {
@@ -35,17 +29,12 @@ public class Basket {
         this.diameter = diameter;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void add(Ball ball) {
+        balls.add(ball);
     }
 
-    public static Basket createBasket(double diameter, int capacity)
-            throws BasketBallException {
-        BasketBallValidator basketBallValidator = new BasketBallValidator();
-        if (!basketBallValidator.validateBasketParameters(diameter, capacity)) {
-            throw new BasketBallException("Wrong basket parameters!");
-        }
-        return new Basket(diameter, capacity);
+    public Ball getBall(int index) {
+        return balls.get(index);
     }
 
     public int totalBalls() {

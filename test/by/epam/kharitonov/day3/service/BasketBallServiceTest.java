@@ -1,17 +1,14 @@
 package by.epam.kharitonov.day3.service;
 
 import by.epam.kharitonov.day3.validator.BasketBallValidatorTest;
-import by.kharitonov.day3.service.BasketBallService;
 import by.kharitonov.day3.entity.Ball;
 import by.kharitonov.day3.entity.BallSize;
 import by.kharitonov.day3.entity.Basket;
 import by.kharitonov.day3.entity.CustomColor;
-import by.kharitonov.day3.exception.BasketBallException;
 import by.kharitonov.day3.service.BasketBallService;
 import org.testng.annotations.*;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
 
 public class BasketBallServiceTest {
     BasketBallService basketBallService;
@@ -24,9 +21,23 @@ public class BasketBallServiceTest {
 
     @DataProvider(name = "dataForPutBallInBasket")
     @Test
-    public Object[][] dataForPutBallInBasket() {//????????????????????
-        BasketBallValidatorTest helpTest = new BasketBallValidatorTest();
-        return helpTest.dataForPossibleToPut();
+    public Object[][] dataForPutBallInBasket() {
+        Basket emptyBasket = new Basket(33, 2);
+        Basket smallBasket = new Basket(15, 10);
+        Basket smallEmptyBasket = new Basket(12, 5);
+        Basket fullBasket = new Basket(30, 1);
+        Ball ball = new Ball(BallSize.SIZE_FIVE, CustomColor.RED);
+        fullBasket.add(ball);
+        return new Object[][]{
+                {new Ball(BallSize.SIZE_FIVE, CustomColor.BLUE),
+                        fullBasket, false},
+                {new Ball(BallSize.SIZE_SIX, CustomColor.GREEN),
+                        emptyBasket, true},
+                {new Ball(BallSize.SIZE_SEVEN, CustomColor.RED),
+                        smallBasket, false},
+                {new Ball(BallSize.SIZE_THREE, CustomColor.RED),
+                        smallEmptyBasket, false}
+        };
     }
 
     @Parameters({"ball", "basket", "expectedResult"})
@@ -39,50 +50,42 @@ public class BasketBallServiceTest {
         assertEquals(actualResult, expectedResult);
     }
 
-    @Test(dependsOnMethods = "testPutBallInBasket")
+    @Test
     public void testTotalBallsWeight() {
-        try {
-            Basket basket = Basket.createBasket(33, 5);
-            Ball ball = new Ball(BallSize.SIZE_SIX, CustomColor.RED);
-            basketBallService.putBallInBasket(ball, basket);
-            ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
-            basketBallService.putBallInBasket(ball, basket);
-            ball = new Ball(BallSize.SIZE_THREE, CustomColor.GREEN);
-            basketBallService.putBallInBasket(ball, basket);
-            ball = new Ball(BallSize.SIZE_FIVE, CustomColor.YELLOW);
-            basketBallService.putBallInBasket(ball, basket);
-            double actualResult = basketBallService.totalBallsWeight(basket);
-            assertEquals(actualResult, 1.97, 0.002);
-        } catch (BasketBallException e) {
-            fail();
-        }
+        Basket basket = new Basket(33, 5);
+        Ball ball = new Ball(BallSize.SIZE_SIX, CustomColor.RED);
+        basket.add(ball);
+        ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
+        basket.add(ball);
+        ball = new Ball(BallSize.SIZE_THREE, CustomColor.GREEN);
+        basket.add(ball);
+        ball = new Ball(BallSize.SIZE_FIVE, CustomColor.YELLOW);
+        basket.add(ball);
+        double actualResult = basketBallService.totalBallsWeight(basket);
+        assertEquals(actualResult, 1.97, 0.002);
     }
 
     @DataProvider(name = "dataForTotalColorBalls")
     @Test
     public Object[][] dataForTotalColorBalls() {
-        try {
-            Basket basket = Basket.createBasket(33, 15);
-            Ball ball = new Ball(BallSize.SIZE_SIX, CustomColor.RED);
-            basketBallService.putBallInBasket(ball, basket);
-            ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
-            basketBallService.putBallInBasket(ball, basket);
-            ball = new Ball(BallSize.SIZE_THREE, CustomColor.BLUE);
-            basketBallService.putBallInBasket(ball, basket);
-            ball = new Ball(BallSize.SIZE_FIVE, CustomColor.RED);
-            basketBallService.putBallInBasket(ball, basket);
-            ball = new Ball(BallSize.SIZE_SIX, CustomColor.YELLOW);
-            basketBallService.putBallInBasket(ball, basket);
-            ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
-            basketBallService.putBallInBasket(ball, basket);
-            return new Object[][]{
-                    {CustomColor.RED, basket, 2},
-                    {CustomColor.BLUE, basket, 3},
-                    {CustomColor.YELLOW, basket, 1}
-            };
-        } catch (BasketBallException e) {
-            return new Object[][]{};
-        }
+        Basket basket = new Basket(33, 15);
+        Ball ball = new Ball(BallSize.SIZE_SIX, CustomColor.RED);
+        basket.add(ball);
+        ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
+        basket.add(ball);
+        ball = new Ball(BallSize.SIZE_THREE, CustomColor.BLUE);
+        basket.add(ball);
+        ball = new Ball(BallSize.SIZE_FIVE, CustomColor.RED);
+        basket.add(ball);
+        ball = new Ball(BallSize.SIZE_SIX, CustomColor.YELLOW);
+        basket.add(ball);
+        ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
+        basket.add(ball);
+        return new Object[][]{
+                {CustomColor.RED, basket, 2},
+                {CustomColor.BLUE, basket, 3},
+                {CustomColor.YELLOW, basket, 1}
+        };
     }
 
     @Parameters({"color", "basket", "expectedResult"})
