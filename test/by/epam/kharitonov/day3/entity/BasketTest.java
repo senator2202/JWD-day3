@@ -12,37 +12,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 public class BasketTest {
-
-    @Test
-    public void testCreateBasket() {
-        Basket actualBasket = new Basket(30, 2);
-        Object actual = new double[]{actualBasket.getDiameter(),
-                actualBasket.getCapacity(), actualBasket.totalBalls()};
-        Object expected = new double[]{30, 2, 0};
-        assertEquals(actual, expected);
-    }
-
-    @DataProvider(name = "dataForCreateBasketException")
-    @Test
-    public Object[][] dataForCreateBasketException() {
-        return new Object[][]{
-                {new double[]{-2, 5}},
-                {new double[]{30, -4}},
-                {new double[]{0, 0}},
-                {new double[]{0, 5}},
-                {new double[]{7, 0}}
-        };
-    }
-
-    @Parameters("parameters")
-    @Test(expectedExceptions = BasketBallException.class,
-            dataProvider = "dataForCreateBasketException")
-    public void testCreateBasketException(double[] parameters)
-            throws BasketBallException {
-        new Basket(parameters[0],
-                (int) parameters[1]);
-    }
-
+    
     @DataProvider(name = "dataForTotalBalls")
     @Test
     public Object[][] dataForTotalBalls() {
