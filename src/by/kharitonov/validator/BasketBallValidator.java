@@ -9,4 +9,8 @@ public class BasketBallValidator {
         return (totalCapacity <= basket.getCapacity() &&
                 ball.getBallSize().getDiameter() <= basket.getDiameter());
     }
+
+    public boolean validateBasketParameters(double diameter, double capacity) {
+        return (diameter > 0 && capacity >= 1);
+    }
 }

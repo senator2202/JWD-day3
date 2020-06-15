@@ -1,6 +1,7 @@
 package by.kharitonov.entity;
 
 import by.kharitonov.exception.BasketBallException;
+import by.kharitonov.validator.BasketBallValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +11,7 @@ public class Basket {
     private int capacity;
     private ArrayList<Ball> balls;
 
-    public Basket(double diameter, int capacity)
-            throws BasketBallException {
-        if (diameter <= 0 || capacity <= 0) {
-            throw new BasketBallException("Wrong basket parameters!");
-        }
+    private Basket(double diameter, int capacity) {
         this.capacity = capacity;
         this.diameter = diameter;
         balls = new ArrayList<>();
@@ -38,6 +35,19 @@ public class Basket {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public static Basket createBasket(double diameter, int capacity)
+            throws BasketBallException {
+        BasketBallValidator basketBallValidator = new BasketBallValidator();
+        if (!basketBallValidator.validateBasketParameters(diameter, capacity)) {
+            throw new BasketBallException("Wrong basket parameters!");
+        }
+        return new Basket(diameter, capacity);
+    }
+
+    public int totalBalls() {
+        return balls.size();
     }
 
     public double totalBallsWeight() {

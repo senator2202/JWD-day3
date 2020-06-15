@@ -1,4 +1,4 @@
-package by.kharitonov.service;
+package by.epam.kharitonov.service;
 
 import by.epam.kharitonov.validator.BasketBallValidatorTest;
 import by.kharitonov.entity.Ball;
@@ -6,10 +6,8 @@ import by.kharitonov.entity.BallSize;
 import by.kharitonov.entity.Basket;
 import by.kharitonov.entity.CustomColor;
 import by.kharitonov.exception.BasketBallException;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import by.kharitonov.service.BasketBallService;
+import org.testng.annotations.*;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
@@ -18,6 +16,7 @@ public class BasketBallServiceTest {
     BasketBallService basketBallService;
 
     @BeforeTest
+    @BeforeGroups(groups = "putBallInBasket")
     private void init() {
         basketBallService = new BasketBallService();
     }
@@ -30,7 +29,9 @@ public class BasketBallServiceTest {
     }
 
     @Parameters({"ball", "basket", "expectedResult"})
-    @Test(dataProvider = "dataForPutBallInBasket")
+    @Test(dataProvider = "dataForPutBallInBasket",
+            groups = "putBallInBasket",
+            priority = 2)
     public void testPutBallInBasket(Ball ball, Basket basket,
                                     boolean expectedResult) {
         boolean actualResult = basketBallService.putBallInBasket(ball, basket);
@@ -40,7 +41,7 @@ public class BasketBallServiceTest {
     @Test(dependsOnMethods = "testPutBallInBasket")
     public void testTotalBallsWeight() {
         try {
-            Basket basket = new Basket(33, 5);
+            Basket basket = Basket.createBasket(33, 5);
             Ball ball = new Ball(BallSize.SIZE_SIX, CustomColor.RED);
             basketBallService.putBallInBasket(ball, basket);
             ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
@@ -60,7 +61,7 @@ public class BasketBallServiceTest {
     @Test
     public Object[][] dataForTotalColorBalls() {
         try {
-            Basket basket = new Basket(33, 15);
+            Basket basket = Basket.createBasket(33, 15);
             Ball ball = new Ball(BallSize.SIZE_SIX, CustomColor.RED);
             basketBallService.putBallInBasket(ball, basket);
             ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
@@ -89,6 +90,6 @@ public class BasketBallServiceTest {
     public void testTotalColorBalls(CustomColor color, Basket basket,
                                     int expectedResult) {
         int actualResult = basketBallService.totalColorBalls(color, basket);
-        assertEquals(actualResult,expectedResult);
+        assertEquals(actualResult, expectedResult);
     }
 }
