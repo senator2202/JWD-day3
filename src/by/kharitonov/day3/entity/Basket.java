@@ -38,6 +38,18 @@ public class Basket implements Serializable {
         return validator.possibleToPut(ball, this);
     }
 
+    public boolean remove(int index) {
+        if (correctIndex(index)) {
+            balls.remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean correctIndex(int index) {
+        return (index < balls.size() && index >= 0);
+    }
+
     public Ball getBall(int index) {
         return balls.get(index);
     }

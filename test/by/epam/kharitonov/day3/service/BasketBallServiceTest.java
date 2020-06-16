@@ -49,6 +49,32 @@ public class BasketBallServiceTest {
         assertEquals(actualResult, expectedResult);
     }
 
+    @DataProvider(name = "dataForRemoveBallFromBasket")
+    @Test
+    public Object[][] dataForRemoveBallFromBasket() {
+        Basket basket = new Basket(30, 5);
+        basket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
+        basket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
+        basket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
+        basket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
+        return new Object[][]{
+                {basket, 0, true},
+                {basket, -1, false},
+                {basket, 2, true},
+                {basket, 4, false},
+                {basket, 25, false}
+        };
+    }
+
+    @Parameters({"basket", "index", "expectedResult"})
+    @Test(dataProvider = "dataForRemoveBallFromBasket")
+    public void testRemoveBallFromBasket(Basket basket, int index,
+                                         boolean expectedResult) {
+        boolean actualResult = basketBallService.removeBallFromBasket(basket,
+                index);
+        assertEquals(actualResult, expectedResult);
+    }
+
     @Test
     public void testTotalBallsWeight() {
         Basket basket = new Basket(33, 5);

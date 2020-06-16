@@ -9,6 +9,10 @@ public class BasketBallService {
         return basket.add(ball);
     }
 
+    public boolean removeBallFromBasket(Basket basket, int index) {
+        return basket.remove(index);
+    }
+
     public double totalBallsWeight(Basket basket) {
         double sum = 0;
         for (int i = 0; i < basket.totalBalls(); i++) {
