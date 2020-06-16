@@ -1,34 +1,53 @@
 package by.kharitonov.day3.entity;
 
-public class Ball {
-    private BallSize ballSize;
+import java.io.Serializable;
+
+public class Ball implements Serializable {
+    private BallType ballType;
     private CustomColor color;
 
-    public Ball(BallSize ballSize, CustomColor color) {
-        this.ballSize = ballSize;
+    public Ball(BallType ballType, CustomColor color) {
+        this.ballType = ballType;
         this.color = color;
     }
 
-    public BallSize getBallSize() {
-        return ballSize;
-    }
-
-    public void setBallSize(BallSize ballSize) {
-        this.ballSize = ballSize;
+    public BallType getBallType() {
+        return ballType;
     }
 
     public CustomColor getColor() {
         return color;
     }
 
-    public void setColor(CustomColor color) {
-        this.color = color;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Ball ball = (Ball) o;
+
+        if (ballType != ball.ballType) {
+            return false;
+        }
+        return (ballType == ball.ballType &&
+                color == ball.color);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ballType.hashCode();
+        result = 31 * result + color.hashCode();
+        return result;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Ball{");
-        sb.append("ballSize=").append(ballSize);
+        sb.append("ballType=").append(ballType);
         sb.append(", color=").append(color);
         sb.append('}');
         return sb.toString();

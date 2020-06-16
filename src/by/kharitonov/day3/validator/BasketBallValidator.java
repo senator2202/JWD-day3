@@ -7,10 +7,10 @@ public class BasketBallValidator {
     public boolean possibleToPut(Ball ball, Basket basket) {
         int totalCapacity = basket.totalBalls() + 1;
         return (totalCapacity <= basket.getCapacity() &&
-                ball.getBallSize().getDiameter() <= basket.getDiameter());
+                ball.getBallType().getDiameter() <= basket.getDiameter());
     }
 
-    public boolean validateBasketParameters(double diameter, double capacity) {
+    public boolean validateBasketParameters(double diameter, int capacity) {
         return (diameter > 0 && capacity >= 1);
     }
 }

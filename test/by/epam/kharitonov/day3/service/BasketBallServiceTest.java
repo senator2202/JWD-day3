@@ -1,8 +1,7 @@
 package by.epam.kharitonov.day3.service;
 
-import by.epam.kharitonov.day3.validator.BasketBallValidatorTest;
 import by.kharitonov.day3.entity.Ball;
-import by.kharitonov.day3.entity.BallSize;
+import by.kharitonov.day3.entity.BallType;
 import by.kharitonov.day3.entity.Basket;
 import by.kharitonov.day3.entity.CustomColor;
 import by.kharitonov.day3.service.BasketBallService;
@@ -26,16 +25,16 @@ public class BasketBallServiceTest {
         Basket smallBasket = new Basket(15, 10);
         Basket smallEmptyBasket = new Basket(12, 5);
         Basket fullBasket = new Basket(30, 1);
-        Ball ball = new Ball(BallSize.SIZE_FIVE, CustomColor.RED);
+        Ball ball = new Ball(BallType.SIZE_FIVE, CustomColor.RED);
         fullBasket.add(ball);
         return new Object[][]{
-                {new Ball(BallSize.SIZE_FIVE, CustomColor.BLUE),
+                {new Ball(BallType.SIZE_FIVE, CustomColor.BLUE),
                         fullBasket, false},
-                {new Ball(BallSize.SIZE_SIX, CustomColor.GREEN),
+                {new Ball(BallType.SIZE_SIX, CustomColor.GREEN),
                         emptyBasket, true},
-                {new Ball(BallSize.SIZE_SEVEN, CustomColor.RED),
+                {new Ball(BallType.SIZE_SEVEN, CustomColor.RED),
                         smallBasket, false},
-                {new Ball(BallSize.SIZE_THREE, CustomColor.RED),
+                {new Ball(BallType.SIZE_THREE, CustomColor.RED),
                         smallEmptyBasket, false}
         };
     }
@@ -53,13 +52,13 @@ public class BasketBallServiceTest {
     @Test
     public void testTotalBallsWeight() {
         Basket basket = new Basket(33, 5);
-        Ball ball = new Ball(BallSize.SIZE_SIX, CustomColor.RED);
+        Ball ball = new Ball(BallType.SIZE_SIX, CustomColor.RED);
         basket.add(ball);
-        ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
+        ball = new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE);
         basket.add(ball);
-        ball = new Ball(BallSize.SIZE_THREE, CustomColor.GREEN);
+        ball = new Ball(BallType.SIZE_THREE, CustomColor.GREEN);
         basket.add(ball);
-        ball = new Ball(BallSize.SIZE_FIVE, CustomColor.YELLOW);
+        ball = new Ball(BallType.SIZE_FIVE, CustomColor.YELLOW);
         basket.add(ball);
         double actualResult = basketBallService.totalBallsWeight(basket);
         assertEquals(actualResult, 1.97, 0.002);
@@ -69,17 +68,17 @@ public class BasketBallServiceTest {
     @Test
     public Object[][] dataForTotalColorBalls() {
         Basket basket = new Basket(33, 15);
-        Ball ball = new Ball(BallSize.SIZE_SIX, CustomColor.RED);
+        Ball ball = new Ball(BallType.SIZE_SIX, CustomColor.RED);
         basket.add(ball);
-        ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
+        ball = new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE);
         basket.add(ball);
-        ball = new Ball(BallSize.SIZE_THREE, CustomColor.BLUE);
+        ball = new Ball(BallType.SIZE_THREE, CustomColor.BLUE);
         basket.add(ball);
-        ball = new Ball(BallSize.SIZE_FIVE, CustomColor.RED);
+        ball = new Ball(BallType.SIZE_FIVE, CustomColor.RED);
         basket.add(ball);
-        ball = new Ball(BallSize.SIZE_SIX, CustomColor.YELLOW);
+        ball = new Ball(BallType.SIZE_SIX, CustomColor.YELLOW);
         basket.add(ball);
-        ball = new Ball(BallSize.SIZE_SEVEN, CustomColor.BLUE);
+        ball = new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE);
         basket.add(ball);
         return new Object[][]{
                 {CustomColor.RED, basket, 2},
