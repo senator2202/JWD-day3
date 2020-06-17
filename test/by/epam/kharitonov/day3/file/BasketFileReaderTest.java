@@ -34,7 +34,8 @@ public class BasketFileReaderTest {
 
     @Test(groups = "serialization/deserialization", priority = 2,
             expectedExceptions = BasketBallRuntimeException.class)
-    public void testDeserializeBasketException() {
+    public void testDeserializeBasketException()
+            throws BasketBallRuntimeException {
         Basket actual = basketFileReader.
                 deserializeBasket("ExceptionSerialization.txt");
     }
@@ -52,7 +53,7 @@ public class BasketFileReaderTest {
 
     @Test(groups = "writing/reading", priority = 2,
             expectedExceptions = BasketBallRuntimeException.class)
-    public void testReadBasketException() {
+    public void testReadBasketException() throws BasketBallRuntimeException {
         basketFileReader.readBasket("Exception.txt");
     }
 }
