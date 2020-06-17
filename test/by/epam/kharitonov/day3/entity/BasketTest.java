@@ -33,9 +33,7 @@ public class BasketTest {
     }
 
     @Parameters({"ball", "basket", "expectedResult"})
-    @Test(dataProvider = "dataForTestAdd",
-            groups = "addBall",
-            priority = 2)
+    @Test(dataProvider = "dataForTestAdd", groups = "addBall", priority = 2)
     public void testAdd(Ball ball, Basket basket,
                         boolean expectedResult) {
         boolean actualResult = basket.add(ball);
@@ -62,7 +60,7 @@ public class BasketTest {
     @Parameters({"basket", "index", "expectedResult"})
     @Test(dataProvider = "dataForRemoveTest")
     public void testRemove(Basket basket, int index,
-                                         boolean expectedResult) {
+                           boolean expectedResult) {
         boolean actualResult = basket.remove(index);
         assertEquals(actualResult, expectedResult);
     }
@@ -81,11 +79,11 @@ public class BasketTest {
         basket.add(ball4);
         basket.add(ball1);
         return new Object[][]{
-                {basket,0,ball1},
-                {basket,1,ball2},
-                {basket,2,ball3},
-                {basket,3,ball4},
-                {basket,4,ball1},
+                {basket, 0, ball1},
+                {basket, 1, ball2},
+                {basket, 2, ball3},
+                {basket, 3, ball4},
+                {basket, 4, ball1},
         };
     }
 

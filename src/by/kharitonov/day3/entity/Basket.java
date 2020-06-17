@@ -16,7 +16,7 @@ public class Basket implements Serializable {
         balls = new ArrayList<>();
     }
 
-    public double getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 

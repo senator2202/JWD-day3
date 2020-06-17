@@ -40,8 +40,7 @@ public class BasketBallServiceTest {
     }
 
     @Parameters({"ball", "basket", "expectedResult"})
-    @Test(dataProvider = "dataForPutBallInBasket",
-            groups = "putBallInBasket",
+    @Test(dataProvider = "dataForPutBallInBasket", groups = "putBallInBasket",
             priority = 2)
     public void testPutBallInBasket(Ball ball, Basket basket,
                                     boolean expectedResult) {
