@@ -12,10 +12,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class BasketFileReaderTest {
-    BasketFileReader basketFileReader;
+    private BasketFileReader basketFileReader;
 
     @BeforeTest
-    @BeforeGroups(groups = {"writing/reading", "serialization/deserialization"})
+    @BeforeGroups(groups = {"writing/reading", "serialization/deserialization",
+            "fileStreaming"})
     private void init() {
         basketFileReader = new BasketFileReader();
     }
@@ -40,7 +41,7 @@ public class BasketFileReaderTest {
                 deserializeBasket("ExceptionSerialization.txt");
     }
 
-    @Test(groups = "writing/reading", priority = 1)
+    @Test(groups = "writing/reading", priority = 2)
     public void testReadBasket() {
         String actual = basketFileReader.readBasket("Basket.txt");
         String expected = "30.0 5\n" +
@@ -51,9 +52,27 @@ public class BasketFileReaderTest {
         Assert.assertEquals(actual, expected);
     }
 
-    @Test(groups = "writing/reading", priority = 2,
+    @Test(groups = "writing/reading", priority = 3,
             expectedExceptions = BasketBallRuntimeException.class)
     public void testReadBasketException() throws BasketBallRuntimeException {
         basketFileReader.readBasket("Exception.txt");
+    }
+
+    @Test(groups = "fileStreaming", priority = 2)
+    public void testInputStreamBasket() {
+        String actual = basketFileReader.inputStreamBasket("BasketStream.txt");
+        String expected = "30.0 5\n" +
+                "SIZE_FIVE RED\n" +
+                "SIZE_SEVEN BLUE\n" +
+                "SIZE_SIX GREEN\n" +
+                "SIZE_THREE BLACK";
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test(groups = "fileStreaming", priority = 3,
+            expectedExceptions = BasketBallRuntimeException.class)
+    public void testInputStreamBasketException()
+            throws BasketBallRuntimeException {
+        basketFileReader.inputStreamBasket("Exception.txt");
     }
 }

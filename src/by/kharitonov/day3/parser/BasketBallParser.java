@@ -19,10 +19,28 @@ public class BasketBallParser {
         return basket;
     }
 
-    public Ball parseBall(String data) {
+    private Ball parseBall(String data) {
         String[] ballParams = data.split("\\s");
         BallType ballType = BallType.valueOf(ballParams[0]);
         CustomColor color = CustomColor.valueOf(ballParams[1]);
         return new Ball(ballType, color);
+    }
+
+    public String reverseParseBasket(Basket basket) {
+        StringBuilder result = new StringBuilder();
+        result.append(basket.getDiameter());
+        result.append(" ").append(basket.getCapacity());
+        for (int i = 0; i < basket.totalBalls(); i++) {
+            String ballData = reverseParseBall(basket.getBall(i));
+            result.append("\n").append(ballData);
+        }
+        return result.toString();
+    }
+
+    private String reverseParseBall(Ball ball) {
+        StringBuilder result = new StringBuilder();
+        result.append(ball.getBallType());
+        result.append(" ").append(ball.getColor());
+        return result.toString();
     }
 }

@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import static org.testng.Assert.assertEquals;
 
 public class BasketBallValidatorTest {
-    BasketBallValidator basketBallValidator;
+    private BasketBallValidator basketBallValidator;
 
     @BeforeTest
     @BeforeGroups(groups = {"putBallInBasket", "addBall"})

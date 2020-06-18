@@ -11,15 +11,15 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class BasketBallParserTest {
-    BasketBallParser basketBallParser;
+    private BasketBallParser basketBallParser;
 
     @BeforeTest
-    @BeforeGroups(groups = "writing/reading")
+    @BeforeGroups(groups = {"writing/reading", "fileStreaming"})
     private void init() {
         basketBallParser = new BasketBallParser();
     }
 
-    @Test(groups = "writing/reading", priority = 3)
+    @Test(groups = {"writing/reading", "fileStreaming"}, priority = 4)
     public void testParseBasket() {
         String data = "30.0 5\n" +
                 "SIZE_FIVE RED\n" +
@@ -33,5 +33,21 @@ public class BasketBallParserTest {
         expectedBasket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
         expectedBasket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
         Assert.assertEquals(actualBasket, expectedBasket);
+    }
+
+    @Test(groups = {"writing/reading", "fileStreaming"}, priority = 0)
+    public void testReverseParseBasket() {
+        Basket basket = new Basket(30, 5);
+        basket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
+        basket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
+        basket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
+        basket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
+        String actualResult = basketBallParser.reverseParseBasket(basket);
+        String expectedResult = "30.0 5\n" +
+                "SIZE_FIVE RED\n" +
+                "SIZE_SEVEN BLUE\n" +
+                "SIZE_SIX GREEN\n" +
+                "SIZE_THREE BLACK";
+        Assert.assertEquals(actualResult, expectedResult);
     }
 }

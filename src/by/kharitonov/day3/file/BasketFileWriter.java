@@ -1,7 +1,7 @@
 package by.kharitonov.day3.file;
 
-import by.kharitonov.day3.entity.Ball;
 import by.kharitonov.day3.entity.Basket;
+import by.kharitonov.day3.parser.BasketBallParser;
 
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -21,22 +21,28 @@ public class BasketFileWriter {
     }
 
     public boolean writeBasket(Basket basket, String fileName) {
-        try(FileWriter writer = new FileWriter(fileName, false))
-        {
-            StringBuilder result= new StringBuilder();
-            result.append(basket.getDiameter());
-            result.append(" ").append(basket.getCapacity());
-            for (int i=0; i<basket.totalBalls(); i++) {
-                Ball ball = basket.getBall(i);
-                result.append("\n").append(ball.getBallType());
-                result.append(" ").append(ball.getColor());
-            }
-            writer.write(result.toString());
+        try (FileWriter writer = new FileWriter(fileName, false)) {
+            BasketBallParser parser = new BasketBallParser();
+            String result = parser.reverseParseBasket(basket);
+            writer.write(result);
             writer.flush();
             return true;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
         }
-        catch(IOException ex){
-            System.out.println(ex.getMessage());
+    }
+
+    public boolean outputStreamBasket(Basket basket, String fileName) {
+        try (FileOutputStream fileOutputStream =
+                     new FileOutputStream(fileName)) {
+            BasketBallParser parser = new BasketBallParser();
+            String data = parser.reverseParseBasket(basket);
+            fileOutputStream.write(data.getBytes());
+            fileOutputStream.flush();
+            return true;
+        } catch (IOException ex) {
+            ex.printStackTrace();
             return false;
         }
     }
