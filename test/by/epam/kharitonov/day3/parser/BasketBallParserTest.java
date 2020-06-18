@@ -12,6 +12,21 @@ import org.testng.annotations.Test;
 
 public class BasketBallParserTest {
     private BasketBallParser basketBallParser;
+    private final String testData;
+    private final Basket testBasket;
+
+    {
+        testData = "30.0 5\n" +
+                "SIZE_FIVE RED\n" +
+                "SIZE_SEVEN BLUE\n" +
+                "SIZE_SIX GREEN\n" +
+                "SIZE_THREE BLACK";
+        testBasket = new Basket(30, 5);
+        testBasket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
+        testBasket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
+        testBasket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
+        testBasket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
+    }
 
     @BeforeTest
     @BeforeGroups(groups = {"writing/reading", "fileStreaming"})
@@ -21,33 +36,15 @@ public class BasketBallParserTest {
 
     @Test(groups = {"writing/reading", "fileStreaming"}, priority = 4)
     public void testParseBasket() {
-        String data = "30.0 5\n" +
-                "SIZE_FIVE RED\n" +
-                "SIZE_SEVEN BLUE\n" +
-                "SIZE_SIX GREEN\n" +
-                "SIZE_THREE BLACK";
-        Basket actualBasket = basketBallParser.parseBasket(data);
-        Basket expectedBasket = new Basket(30, 5);
-        expectedBasket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
-        expectedBasket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
-        expectedBasket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
-        expectedBasket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
+        Basket actualBasket = basketBallParser.parseBasket(testData);
+        Basket expectedBasket = testBasket;
         Assert.assertEquals(actualBasket, expectedBasket);
     }
 
     @Test(groups = {"writing/reading", "fileStreaming"}, priority = 0)
     public void testReverseParseBasket() {
-        Basket basket = new Basket(30, 5);
-        basket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
-        basket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
-        basket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
-        basket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
-        String actualResult = basketBallParser.reverseParseBasket(basket);
-        String expectedResult = "30.0 5\n" +
-                "SIZE_FIVE RED\n" +
-                "SIZE_SEVEN BLUE\n" +
-                "SIZE_SIX GREEN\n" +
-                "SIZE_THREE BLACK";
+        String actualResult = basketBallParser.reverseParseBasket(testBasket);
+        String expectedResult = testData;
         Assert.assertEquals(actualResult, expectedResult);
     }
 }

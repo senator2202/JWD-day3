@@ -3,8 +3,8 @@ package by.kharitonov.day3.entity;
 import java.io.Serializable;
 
 public class Ball implements Serializable {
-    private BallType ballType;
-    private CustomColor color;
+    private final BallType ballType;
+    private final CustomColor color;
 
     public Ball(BallType ballType, CustomColor color) {
         this.ballType = ballType;
@@ -27,14 +27,11 @@ public class Ball implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Ball ball = (Ball) o;
-
         if (ballType != ball.ballType) {
             return false;
         }
-        return (ballType == ball.ballType &&
-                color == ball.color);
+        return (ballType == ball.ballType && color == ball.color);
     }
 
     @Override

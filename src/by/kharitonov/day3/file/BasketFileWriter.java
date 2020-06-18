@@ -14,7 +14,7 @@ public class BasketFileWriter {
                 (new FileOutputStream(fileName))) {
             oos.writeObject(basket);
             return true;
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
             return false;
         }

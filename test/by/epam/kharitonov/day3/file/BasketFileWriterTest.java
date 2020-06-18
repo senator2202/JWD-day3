@@ -12,6 +12,15 @@ import org.testng.annotations.Test;
 
 public class BasketFileWriterTest {
     private BasketFileWriter basketFileWriter;
+    private final Basket testBasket;
+
+    {
+        testBasket = new Basket(30, 5);
+        testBasket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
+        testBasket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
+        testBasket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
+        testBasket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
+    }
 
     @BeforeTest
     @BeforeGroups(groups = {"serialization/deserialization", "writing/reading",
@@ -22,11 +31,7 @@ public class BasketFileWriterTest {
 
     @Test(groups = "serialization/deserialization", priority = 0)
     public void testSerializeBasket() {
-        Basket basket = new Basket(30, 5);
-        basket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
-        basket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
-        basket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
-        basket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
+        Basket basket = testBasket;
         boolean actual = basketFileWriter.serializeBasket(basket,
                 "BasketSerialization.txt");
         Assert.assertTrue(actual);
@@ -34,11 +39,7 @@ public class BasketFileWriterTest {
 
     @Test(groups = "writing/reading", priority = 1)
     public void testWriteBasket() {
-        Basket basket = new Basket(30, 5);
-        basket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
-        basket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
-        basket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
-        basket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
+        Basket basket = testBasket;
         boolean actual = basketFileWriter.writeBasket(basket,
                 "Basket.txt");
         Assert.assertTrue(actual);
@@ -46,11 +47,7 @@ public class BasketFileWriterTest {
 
     @Test(groups = "fileStreaming", priority = 1)
     public void testOutputStreamBasket() {
-        Basket basket = new Basket(30, 5);
-        basket.add(new Ball(BallType.SIZE_FIVE, CustomColor.RED));
-        basket.add(new Ball(BallType.SIZE_SEVEN, CustomColor.BLUE));
-        basket.add(new Ball(BallType.SIZE_SIX, CustomColor.GREEN));
-        basket.add(new Ball(BallType.SIZE_THREE, CustomColor.BLACK));
+        Basket basket = testBasket;
         boolean actual = basketFileWriter.outputStreamBasket(basket,
                 "BasketStream.txt");
         Assert.assertTrue(actual);

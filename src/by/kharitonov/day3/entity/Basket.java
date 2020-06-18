@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Basket implements Serializable {
-    private double diameter;
-    private int capacity;
-    private ArrayList<Ball> balls;
+    private final double diameter;
+    private final int capacity;
+    private final ArrayList<Ball> balls;
 
     public Basket(double diameter, int capacity) {
         this.capacity = capacity;
@@ -74,9 +74,7 @@ public class Basket implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Basket basket = (Basket) o;
-
         return (diameter == basket.diameter &&
                 capacity == basket.capacity &&
                 balls.equals(basket.balls));
