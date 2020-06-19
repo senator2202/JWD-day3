@@ -9,7 +9,7 @@ public class BasketBallParser {
     public Basket parseBasket(String data) {
         String[] params = data.split("\n");
         String[] basketParams = params[0].split("\\s");
-        Double diameter = Double.parseDouble(basketParams[0]);
+        double diameter = Double.parseDouble(basketParams[0]);
         int capacity = Integer.parseInt(basketParams[1]);
         Basket basket = new Basket(diameter, capacity);
         for (int i = 1; i < params.length; i++) {

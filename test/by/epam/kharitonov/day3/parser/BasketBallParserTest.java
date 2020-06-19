@@ -37,14 +37,12 @@ public class BasketBallParserTest {
     @Test(groups = {"writing/reading", "fileStreaming"}, priority = 4)
     public void testParseBasket() {
         Basket actualBasket = basketBallParser.parseBasket(testData);
-        Basket expectedBasket = testBasket;
-        Assert.assertEquals(actualBasket, expectedBasket);
+        Assert.assertEquals(actualBasket, testBasket);
     }
 
-    @Test(groups = {"writing/reading", "fileStreaming"}, priority = 0)
+    @Test(groups = {"writing/reading", "fileStreaming"})
     public void testReverseParseBasket() {
         String actualResult = basketBallParser.reverseParseBasket(testBasket);
-        String expectedResult = testData;
-        Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertEquals(actualResult, testData);
     }
 }

@@ -43,8 +43,7 @@ public class BasketFileReaderTest {
 
     @Test(groups = "serialization/deserialization", priority = 2,
             expectedExceptions = BasketBallRuntimeException.class)
-    public void testDeserializeBasketException()
-            throws BasketBallRuntimeException {
+    public void testDeserializeBasketException() {
         basketFileReader.
                 deserializeBasket("ExceptionSerialization.txt");
     }
@@ -58,21 +57,21 @@ public class BasketFileReaderTest {
 
     @Test(groups = "writing/reading", priority = 3,
             expectedExceptions = BasketBallRuntimeException.class)
-    public void testReadBasketException() throws BasketBallRuntimeException {
+    public void testReadBasketException() {
         basketFileReader.readBasket("Exception.txt");
     }
 
     @Test(groups = "fileStreaming", priority = 2)
     public void testInputStreamBasket() {
-        String actual = basketFileReader.inputStreamBasket("BasketStream.txt");
+        String actual = basketFileReader.
+                inputStreamBasket("BasketStream.txt");
         String expected = testData;
         Assert.assertEquals(actual, expected);
     }
 
     @Test(groups = "fileStreaming", priority = 3,
             expectedExceptions = BasketBallRuntimeException.class)
-    public void testInputStreamBasketException()
-            throws BasketBallRuntimeException {
+    public void testInputStreamBasketException() {
         basketFileReader.inputStreamBasket("Exception.txt");
     }
 }

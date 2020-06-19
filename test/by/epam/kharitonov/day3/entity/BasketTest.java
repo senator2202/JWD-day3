@@ -4,7 +4,9 @@ import by.kharitonov.day3.entity.Ball;
 import by.kharitonov.day3.entity.BallType;
 import by.kharitonov.day3.entity.Basket;
 import by.kharitonov.day3.entity.CustomColor;
-import org.testng.annotations.*;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
@@ -85,7 +87,7 @@ public class BasketTest {
         };
     }
 
-    @Parameters({"basket", "index", "exectedResult"})
+    @Parameters({"basket", "index", "expectedResult"})
     @Test(dataProvider = "dataForGetBall")
     public void testGetBall(Basket basket, int index, Ball expectedResult) {
         Ball actualResult = basket.getBall(index);

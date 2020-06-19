@@ -28,9 +28,6 @@ public class Ball implements Serializable {
             return false;
         }
         Ball ball = (Ball) o;
-        if (ballType != ball.ballType) {
-            return false;
-        }
         return (ballType == ball.ballType && color == ball.color);
     }
 

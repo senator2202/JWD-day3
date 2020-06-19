@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class BasketFileReader {
-    private static final String ERROR_MESSAGE = "Error, while opening file!";
+    private static final String ERROR_MESSAGE = "Error, while opening/reading" +
+            " file!";
 
     public Basket deserializeBasket(String fileName) {
         try (ObjectInputStream ois = new ObjectInputStream
