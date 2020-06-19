@@ -1,4 +1,4 @@
-package by.epam.kharitonov.day3.creator;
+package test.kharitonov.day3.creator;
 
 import by.kharitonov.day3.creator.BasketCreator;
 import by.kharitonov.day3.entity.Basket;

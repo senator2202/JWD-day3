@@ -1,4 +1,4 @@
-package by.epam.kharitonov.day3.file;
+package test.kharitonov.day3.file;
 
 import by.kharitonov.day3.entity.Ball;
 import by.kharitonov.day3.entity.BallType;
