@@ -36,7 +36,8 @@ public class BasketFileReaderTest {
     @Test(groups = "serialization/deserialization", priority = 1)
     public void testDeserializeBasket() {
         Basket actual = basketFileReader.
-                deserializeBasket("BasketSerialization.txt");
+                deserializeBasket("resources\\Basket" +
+                        "Serialization.txt");
         Basket expected = testBasket;
         Assert.assertEquals(actual, expected);
     }
@@ -45,12 +46,14 @@ public class BasketFileReaderTest {
             expectedExceptions = BasketBallRuntimeException.class)
     public void testDeserializeBasketException() {
         basketFileReader.
-                deserializeBasket("ExceptionSerialization.txt");
+                deserializeBasket("resources\\Exception" +
+                        "Serialization.txt");
     }
 
     @Test(groups = "writing/reading", priority = 2)
     public void testReadBasket() {
-        String actual = basketFileReader.readBasket("Basket.txt");
+        String actual = basketFileReader.readBasket("resources\\" +
+                "Basket.txt");
         String expected = testData;
         Assert.assertEquals(actual, expected);
     }
@@ -58,13 +61,13 @@ public class BasketFileReaderTest {
     @Test(groups = "writing/reading", priority = 3,
             expectedExceptions = BasketBallRuntimeException.class)
     public void testReadBasketException() {
-        basketFileReader.readBasket("Exception.txt");
+        basketFileReader.readBasket("resources\\Exception.txt");
     }
 
     @Test(groups = "fileStreaming", priority = 2)
     public void testInputStreamBasket() {
         String actual = basketFileReader.
-                inputStreamBasket("BasketStream.txt");
+                inputStreamBasket("resources\\BasketStream.txt");
         String expected = testData;
         Assert.assertEquals(actual, expected);
     }
@@ -72,6 +75,6 @@ public class BasketFileReaderTest {
     @Test(groups = "fileStreaming", priority = 3,
             expectedExceptions = BasketBallRuntimeException.class)
     public void testInputStreamBasketException() {
-        basketFileReader.inputStreamBasket("Exception.txt");
+        basketFileReader.inputStreamBasket("resources\\Exception.txt");
     }
 }

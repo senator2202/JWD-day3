@@ -33,8 +33,12 @@ public class Ball implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = ballType.hashCode();
-        result = 31 * result + color.hashCode();
+        int resultType = ballType.hashCode();
+        int resultColor = color.hashCode();
+        int result;
+        resultColor *= 31;
+        resultType *= 31;
+        result = resultColor + resultType;
         return result;
     }
 

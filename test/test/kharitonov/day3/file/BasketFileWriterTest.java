@@ -30,7 +30,7 @@ public class BasketFileWriterTest {
     public void testSerializeBasketTrue() {
         Basket basket = testBasket;
         boolean actual = basketFileWriter.serializeBasket(basket,
-                "BasketSerialization.txt");
+                "resources\\BasketSerialization.txt");
         Assert.assertTrue(actual);
     }
 
@@ -46,7 +46,7 @@ public class BasketFileWriterTest {
     public void testWriteBasketTrue() {
         Basket basket = testBasket;
         boolean actual = basketFileWriter.writeBasket(basket,
-                "Basket.txt");
+                "resources\\Basket.txt");
         Assert.assertTrue(actual);
     }
 
@@ -62,7 +62,7 @@ public class BasketFileWriterTest {
     public void testOutputStreamBasketTrue() {
         Basket basket = testBasket;
         boolean actual = basketFileWriter.outputStreamBasket(basket,
-                "BasketStream.txt");
+                "resources\\BasketStream.txt");
         Assert.assertTrue(actual);
     }
 

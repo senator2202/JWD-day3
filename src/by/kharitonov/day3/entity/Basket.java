@@ -88,6 +88,7 @@ public class Basket implements Serializable {
         result = (int) (temp ^ (temp >>> 32));
         result = 31 * result + capacity;
         result = 31 * result + balls.hashCode();
+        result = 31 * result + (int) diameter % capacity;
         return result;
     }
 
